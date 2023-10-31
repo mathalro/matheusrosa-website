@@ -19,3 +19,6 @@ services:
       - "80:80"
     volumes:
       - website:/usr/share/nginx/html/website
+
+volumes:
+  website:
