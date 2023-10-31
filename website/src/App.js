@@ -1,23 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import CentralizedContainer from './components/common/CentralizedContainer';
+import MarkdownEditor from './components/markdown/MarkdownEditor';
+import Navbar from './components/nav/Navbar'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+        <Navbar />
+        <CentralizedContainer>
+          <MarkdownEditor />
+        </CentralizedContainer>
     </div>
   );
 }

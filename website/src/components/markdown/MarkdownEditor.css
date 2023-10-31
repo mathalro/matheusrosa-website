@@ -1,0 +1,15 @@
+.markdown-editor {
+    display: flex;
+    justify-content: space-between;
+}
+
+.editor {
+    width: 50%;
+    padding: 16px;
+}
+
+.preview {
+    width: 50%;
+    padding: 16px;
+    border: 1px solid #ccc;
+}
