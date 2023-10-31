@@ -6,7 +6,7 @@ services:
     ports:
       - "3000:3000"
     volumes:
-      - website:./website/build/
+      - website:/website/build/
   
   nginx:
     container_name: 'nginx'
