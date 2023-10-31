@@ -4,8 +4,7 @@ services:
     build:
       context: ./website
       dockerfile: Dockerfile
-    cache_from:
-      - '${WEBSITE_IMAGE}'
+      cache_from: '${WEBSITE_IMAGE}'
     image: '${WEBSITE_IMAGE}'
     ports:
       - "3000:3000"
@@ -16,8 +15,7 @@ services:
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    cache_from:
-      - '${NGINX_IMAGE}'
+      cache_from: '${NGINX_IMAGE}'
     image: '${NGINX_IMAGE}'
     ports:
       - "80:80"
