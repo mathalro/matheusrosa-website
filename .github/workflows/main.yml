@@ -10,9 +10,9 @@ env:
   REGISTRY: ghcr.io
 
 jobs:
-  build:
-    name: Build the Docker Image
-    runs-on: ubuntu-latest
+  # build:
+  #   name: Build the Docker Image
+  #   runs-on: ubuntu-latest
 
   #   steps:
   #     - name: checkout main
@@ -90,9 +90,9 @@ jobs:
 
         run: |
           host matheusrosa.com
-          scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{ var.AWS_HOST_USER }}@${{ vars.WEBSITE_DOMAIN }}:
-          ssh -o StrictHostKeyChecking=no ${{secrets.AWS_HOST_USER}}@${{ secrets.AWS_EC2_IP_ADDRESS }} << EOF
-              docker login ghcr.io -u ${{secrets.NAMESPACE}} -p ${{secrets.PERSONAL_ACCESS_TOKEN}}
+          scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{ vars.AWS_HOST_USER }}@${{ vars.WEBSITE_DOMAIN }}:
+          ssh -o StrictHostKeyChecking=no ${{ vars.AWS_HOST_USER }}@${{ vars.WEBSITE_DOMAIN }} << EOF
+              docker login ghcr.io -u ${{ secrets.NAMESPACE }} -p ${{ secrets.PERSONAL_ACCESS_TOKEN }}
               docker pull $WEBSITE_IMAGE
               docker pull $NGINX_IMAGE 
               docker-compose --env-file=.env -f docker-compose.prod.yml up -d
