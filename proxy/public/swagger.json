@@ -1,0 +1,173 @@
+{
+	"components": {
+		"examples": {},
+		"headers": {},
+		"parameters": {},
+		"requestBodies": {},
+		"responses": {},
+		"schemas": {
+			"Article": {
+				"properties": {
+					"userId": {
+						"type": "string"
+					},
+					"createdAt": {
+						"type": "number",
+						"format": "double"
+					},
+					"id": {
+						"type": "string"
+					},
+					"title": {
+						"type": "string"
+					},
+					"body": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"userId",
+					"createdAt",
+					"id",
+					"title",
+					"body"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"DescribeArticlesResponse": {
+				"properties": {
+					"articles": {
+						"items": {
+							"$ref": "#/components/schemas/Article"
+						},
+						"type": "array"
+					}
+				},
+				"required": [
+					"articles"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateArticleResponse": {
+				"properties": {
+					"article": {
+						"$ref": "#/components/schemas/Article"
+					}
+				},
+				"required": [
+					"article"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"CreateArticleRequest": {
+				"properties": {
+					"article": {
+						"$ref": "#/components/schemas/Article"
+					}
+				},
+				"required": [
+					"article"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"PingResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"message"
+				],
+				"type": "object",
+				"additionalProperties": false
+			}
+		},
+		"securitySchemes": {}
+	},
+	"info": {
+		"title": "proxy-api-matheusrosa",
+		"version": "1.0.0",
+		"description": "Proxy API for matheusrosa.com",
+		"contact": {
+			"name": "Matheus Rosa"
+		}
+	},
+	"openapi": "3.0.0",
+	"paths": {
+		"/articles": {
+			"get": {
+				"operationId": "GetArticles",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/DescribeArticlesResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			},
+			"post": {
+				"operationId": "CreateArticle",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/CreateArticleResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/CreateArticleRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/ping": {
+			"get": {
+				"operationId": "GetMessage",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/PingResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": []
+			}
+		}
+	},
+	"servers": [
+		{
+			"url": "/"
+		}
+	]
+}
