@@ -6,7 +6,7 @@ const MarkdownEditor = () => {
 
     useEffect(() => {
         const getData = async () => {
-            const response = await axios.get("http://localhost:8000/api/articles");
+            const response = await axios.get("http://matheusrosa.com/api/articles");
             setArticles(response.data.articles);
         };
 
