@@ -1,15 +1,31 @@
-import React from "react";
-import MDEditor from '@uiw/react-md-editor';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
 
 const MarkdownEditor = () => {
-    const [value, setValue] = React.useState("## Add your content");
+    const [articles, setArticles] = useState();
+
+    useEffect(() => {
+        const getData = async () => {
+            const response = await axios.get("http://localhost:8000/api/articles");
+            setArticles(response.data.articles);
+        };
+
+        getData();
+    }, []);
+
     return (
-        <div className="container">
-            <MDEditor
-                value={value}
-                onChange={setValue}
-            />
-        </div>
+        <>
+            <h1>Articles</h1>
+            {
+                articles && articles.map(a => 
+                    <>
+                        <h2>{a.title}</h2>
+                        <span>{ (new Date(1700349500)).toLocaleDateString() }</span>
+                        <p>{a.body}</p>
+                    </>
+                )
+            }
+        </>
     );
 };
 

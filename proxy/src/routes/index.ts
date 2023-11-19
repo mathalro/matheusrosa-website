@@ -24,4 +24,4 @@ router.post("/articles", async (_req, res) => {
     return res.send(response);
 })
 
-export default router; 
+export default router;

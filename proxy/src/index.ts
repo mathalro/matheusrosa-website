@@ -2,6 +2,7 @@ import express, { Application, NextFunction } from 'express';
 import morgan from 'morgan';
 import Router from './routes/index';
 import swaggerUi from "swagger-ui-express";
+import cors from 'cors';
 
 const PORT = process.env.API_PORT || 8000
 
@@ -11,9 +12,13 @@ app.use(morgan("tiny"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-const APP_URL = "https://jq46gnahr6.execute-api.eu-west-1.amazonaws.com/prod/articles";
+const allowedOrigins = ['http://localhost:8080'];
+const options: cors.CorsOptions = {
+  origin: allowedOrigins
+};
+app.use(cors(options));
 
-app.use(Router);
+app.use("/api", Router);
 app.use(
     ["/openapi", "/docs", "/swagger"],
     swaggerUi.serve,

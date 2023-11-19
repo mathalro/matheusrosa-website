@@ -1,24 +1,55 @@
-version: '3'
+version: "3"
 services:
   website:
+    container_name: website
+    image: '${WEBSITE_IMAGE}'
+    hostname: website
     build:
       context: ./website
       dockerfile: Dockerfile
-    image: '${WEBSITE_IMAGE}'
+    working_dir: /usr/src/app
+    networks:
+      - node-network
+    volumes:
+      - ./website:/usr/src/app
+      - /usr/src/app/node_modules
+    tty: true
     ports:
       - "3000:3000"
+    command: npm start
+
+  api:
+    container_name: api
+    image: '${API_IMAGE}'
+    hostname: api
+    build:
+      context: ./proxy
+      dockerfile: Dockerfile
     volumes:
-      - website:./website/build/
+      - ./proxy:/usr/src/app
+      - /usr/src/app/node_modules
+    networks:
+      - node-network
+    ports:
+      - "8000:8000"
+    command: npm run start
 
   nginx:
+    container_name: nginx
+    image: '${NGINX_IMAGE}'
     build:
       context: ./nginx
       dockerfile: Dockerfile
-    image: '${NGINX_IMAGE}'
+    restart: always
+    tty: true
     ports:
-      - "80:80"
-    volumes:
-      - website:/usr/share/nginx/html/website
+      - "8080:80"
+    networks:
+      - node-network
+    depends_on:
+      - api
+      - website
 
-volumes:
-  website:
+networks:
+  node-network:
+    driver: bridge
