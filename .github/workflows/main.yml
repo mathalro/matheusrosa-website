@@ -20,7 +20,7 @@ jobs:
       - id: pre-step
         shell: bash
         run: echo "release-version=$(echo ${GITHUB_REF:10})" >> $GITHUB_OUTPUT
-
+        
       - name: checkout main
         uses: actions/checkout@v3
 
@@ -99,7 +99,6 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 
         run: |
-          ./.env
           scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{ vars.AWS_HOST_USER }}@${{ vars.WEBSITE_DOMAIN }}:
           ssh -o StrictHostKeyChecking=no ${{ vars.AWS_HOST_USER }}@${{ vars.WEBSITE_DOMAIN }} << EOF
               docker login ghcr.io -u ${{ secrets.NAMESPACE }} -p ${{ secrets.PERSONAL_ACCESS_TOKEN }}
