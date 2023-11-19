@@ -6,6 +6,7 @@ on:
 
 env:
   WEBSITE_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/website
+  API_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/api
   NGINX_IMAGE: ghcr.io/$(echo $GITHUB_REPOSITORY | tr '[:upper:]' '[:lower:]')/nginx
   REGISTRY: ghcr.io
 
@@ -22,6 +23,7 @@ jobs:
         run: |
           echo "WEBSITE_IMAGE=$(echo ${{env.WEBSITE_IMAGE}} )" >> $GITHUB_ENV
           echo "NGINX_IMAGE=$(echo ${{env.NGINX_IMAGE}} )" >> $GITHUB_ENV
+          echo "API_IMAGE=$(echo ${{env.API_IMAGE_IMAGE}} )" >> $GITHUB_ENV
 
       - name: Log in to GitHub Packages
         env:
@@ -31,6 +33,7 @@ jobs:
       - name: Pull images
         run: |
           docker pull ${{ env.WEBSITE_IMAGE }} || true
+          docker pull ${{ env.API_IMAGE }} || true
           docker pull ${{ env.NGINX_IMAGE }} || true
 
       - name: Build images
@@ -40,6 +43,7 @@ jobs:
       - name: Push images
         run: |
           docker push ${{ env.WEBSITE_IMAGE }}
+          docker push ${{ env.API_IMAGE }}
           docker push ${{ env.NGINX_IMAGE }}
 
   checking-secrets:
@@ -93,6 +97,7 @@ jobs:
           ssh -o StrictHostKeyChecking=no ${{ vars.AWS_HOST_USER }}@${{ vars.WEBSITE_DOMAIN }} << EOF
               docker login ghcr.io -u ${{ secrets.NAMESPACE }} -p ${{ secrets.PERSONAL_ACCESS_TOKEN }}
               docker pull $WEBSITE_IMAGE
+              docker pull $API_IMAGE
               docker pull $NGINX_IMAGE 
               docker-compose --env-file=.env -f docker-compose.prod.yml up -d
           EOF
