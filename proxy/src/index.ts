@@ -12,7 +12,7 @@ app.use(morgan("tiny"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-const allowedOrigins = ['http://localhost:8080'];
+const allowedOrigins = ['http://localhost:8080', 'http://matheusrosa.com'];
 const options: cors.CorsOptions = {
   origin: allowedOrigins
 };

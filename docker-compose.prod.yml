@@ -4,14 +4,10 @@ services:
     container_name: website
     image: '${WEBSITE_IMAGE}'
     hostname: website
-    build:
-      context: ./website
-      dockerfile: Dockerfile
     working_dir: /usr/src/app
     networks:
       - node-network
     volumes:
-      - ./website:/usr/src/app
       - /usr/src/app/node_modules
     tty: true
     ports:
@@ -22,11 +18,7 @@ services:
     container_name: api
     image: '${API_IMAGE}'
     hostname: api
-    build:
-      context: ./proxy
-      dockerfile: Dockerfile
     volumes:
-      - ./proxy:/usr/src/app
       - /usr/src/app/node_modules
     networks:
       - node-network
@@ -37,9 +29,6 @@ services:
   nginx:
     container_name: nginx
     image: '${NGINX_IMAGE}'
-    build:
-      context: ./nginx
-      dockerfile: Dockerfile
     restart: always
     tty: true
     ports:
