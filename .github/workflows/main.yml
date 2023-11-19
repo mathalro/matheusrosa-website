@@ -23,7 +23,7 @@ jobs:
         run: |
           echo "WEBSITE_IMAGE=$(echo ${{env.WEBSITE_IMAGE}} )" >> $GITHUB_ENV
           echo "NGINX_IMAGE=$(echo ${{env.NGINX_IMAGE}} )" >> $GITHUB_ENV
-          echo "API_IMAGE=$(echo ${{env.API_IMAGE_IMAGE}} )" >> $GITHUB_ENV
+          echo "API_IMAGE=$(echo ${{env.API_IMAGE}} )" >> $GITHUB_ENV
 
       - name: Log in to GitHub Packages
         env:
