@@ -11,7 +11,6 @@ export default class ArticlesController {
     @Get()
     public async getArticles(): Promise<DescribeArticlesResponse> {
         const response = await axios.get(APP_URL);
-
         return {
             articles: response.data
         };
