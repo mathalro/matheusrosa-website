@@ -27,7 +27,7 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./proxy:/usr/src/app
-      - /usr/src/app/node_modules
+      - /usr/src/app/build
     networks:
       - node-network
     ports:

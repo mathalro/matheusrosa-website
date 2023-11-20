@@ -25,12 +25,12 @@ services:
       dockerfile: Dockerfile
     volumes:
       - ./proxy:/usr/src/app
-      - /usr/src/app/node_modules
+      - /usr/src/app/build
     networks:
       - node-network
     ports:
       - "8000:8000"
-    command: npm run dev
+    command: npm run start
 
   nginx:
     container_name: nginx
