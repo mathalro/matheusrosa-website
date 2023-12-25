@@ -12,13 +12,14 @@ app.use(morgan("tiny"));
 app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
-const allowedOrigins = ['http://localhost:8080', 'http://matheusrosa.com'];
+const allowedOrigins = ['http://localhost:8080', 'http://localhost:3000', 'http://matheusrosa.com'];
 const options: cors.CorsOptions = {
   origin: allowedOrigins
 };
 app.use(cors(options));
 
 app.use("/api", Router);
+app.use("/", Router);
 app.use(
     ["/openapi", "/docs", "/swagger"],
     swaggerUi.serve,

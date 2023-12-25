@@ -17,17 +17,7 @@ export default class ArticlesController {
     }
 
     @Post()
-    public async createArticle(@Body() requestBody: CreateArticleRequest): Promise<CreateArticleResponse> {
-        const response = await axios.post(APP_URL, requestBody)
-
-        return {
-            article: {
-                userId: "mathalro",
-                title: "testing",
-                body: "### Testing",
-                createdAt: Math.floor(Date.now() / 1000),
-                id: crypto.randomUUID()
-            }
-        }
+    public async createArticle(@Body() request: CreateArticleRequest): Promise<void> {
+        const response = await axios.post(APP_URL, request.article);
     }
 }

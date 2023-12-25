@@ -50,18 +50,6 @@
 				"type": "object",
 				"additionalProperties": false
 			},
-			"CreateArticleResponse": {
-				"properties": {
-					"article": {
-						"$ref": "#/components/schemas/Article"
-					}
-				},
-				"required": [
-					"article"
-				],
-				"type": "object",
-				"additionalProperties": false
-			},
 			"CreateArticleRequest": {
 				"properties": {
 					"article": {
@@ -120,15 +108,8 @@
 			"post": {
 				"operationId": "CreateArticle",
 				"responses": {
-					"200": {
-						"description": "Ok",
-						"content": {
-							"application/json": {
-								"schema": {
-									"$ref": "#/components/schemas/CreateArticleResponse"
-								}
-							}
-						}
+					"204": {
+						"description": "No content"
 					}
 				},
 				"security": [],

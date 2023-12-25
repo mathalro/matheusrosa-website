@@ -1,15 +1,51 @@
-.markdown-editor {
+.editor-form {
+    margin-top: 20px;
+}
+
+.editor-title {
+    outline: none;
+    width: 100%;
+    border-left: none;
+    border-top: none;
+    border-right: none;
+    border-bottom: 1px solid gray;
+    font-size: large;
+    font-weight: bold;
+}
+
+.editor-markdown {
+    margin-top: 20px;
+}
+
+.editor-markdown-widgets {
+    display: flex;
+    justify-content: end;
+}
+
+.editor-markdown-widgets a {
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.editor-markdown-content {
     display: flex;
     justify-content: space-between;
 }
 
-.editor {
+.editor-markdown-item {
     width: 50%;
-    padding: 16px;
+    max-width: 50%;
 }
 
-.preview {
-    width: 50%;
-    padding: 16px;
-    border: 1px solid #ccc;
+.editor-markdown-textarea {
+    border: none;
+    resize: none;
+    outline: none;
+    width: 100%;
+    min-width: 100%;
+}
+
+.no-border {
+    border: 0;
+    box-shadow: none;
 }

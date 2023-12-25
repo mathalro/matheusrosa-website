@@ -30,7 +30,7 @@ services:
       - node-network
     ports:
       - "8000:8000"
-    command: npm run start
+    command: npm run dev
 
   nginx:
     container_name: nginx
