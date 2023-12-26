@@ -10,9 +10,6 @@ services:
     working_dir: /usr/src/app
     networks:
       - node-network
-    volumes:
-      - ./website:/usr/src/app
-      - /usr/src/app/node_modules
     tty: true
     ports:
       - "3000:3000"
