@@ -2,8 +2,13 @@
     margin-top: 20px;
 }
 
+.editor-publish {
+    margin: 0 5px;
+}
+
 .editor-title {
     outline: none;
+    display: inline;
     width: 100%;
     border-left: none;
     border-top: none;
@@ -11,6 +16,7 @@
     border-bottom: 1px solid gray;
     font-size: large;
     font-weight: bold;
+    padding: 10px 5px;
 }
 
 .editor-markdown {
@@ -19,12 +25,13 @@
 
 .editor-markdown-widgets {
     display: flex;
-    justify-content: end;
+    justify-content: end;   
 }
 
 .editor-markdown-widgets a {
     text-decoration: none;
     cursor: pointer;
+    margin: 0 5px;
 }
 
 .editor-markdown-content {
@@ -43,6 +50,7 @@
     outline: none;
     width: 100%;
     min-width: 100%;
+    margin: 0 5px;
 }
 
 .no-border {

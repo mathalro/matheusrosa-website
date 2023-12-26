@@ -20,7 +20,7 @@ const Navbar = () => {
             <a href="/about">About</a>
           </li>
           <li className="app-navbar-item">
-            <a href="/about">Login</a>
+            <a href="/login">Login</a>
           </li>
         </ul>
 
