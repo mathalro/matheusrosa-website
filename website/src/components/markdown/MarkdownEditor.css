@@ -16,7 +16,7 @@
     border-bottom: 1px solid gray;
     font-size: large;
     font-weight: bold;
-    padding: 10px 5px;
+    padding: 10px 5px;  
 }
 
 .editor-markdown {
@@ -25,7 +25,7 @@
 
 .editor-markdown-widgets {
     display: flex;
-    justify-content: end;   
+    justify-content: flex-end; 
 }
 
 .editor-markdown-widgets a {

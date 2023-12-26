@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Article from "./Article";
+import config from "../../config";
 
 const MarkdownEditor = () => {
     const [articles, setArticles] = useState();
 
     useEffect(() => {
         const getData = async () => {
-            const response = await axios.get("http://localhost:8000/api/articles");
+            const response = await axios.get(`http://${config.baseUrl}/api/articles`);
             setArticles(response.data.articles);
         };
 

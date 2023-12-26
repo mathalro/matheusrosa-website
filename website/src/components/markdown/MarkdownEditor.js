@@ -7,6 +7,7 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 
 import "./MarkdownEditor.css";
+import config from '../../config';
 
 const MarkdownEditor = () => {
     const initialTitle = "Article Title...";
@@ -31,13 +32,13 @@ const MarkdownEditor = () => {
     }
 
     const publishArticle = async () => {
-        if (title == "" || text == "") {
+        if (title === "" || text === "") {
             alert("Article title or article text is empty.");
             return;
         }
 
         try {
-            await axios.post("http://localhost:8000/api/articles", {
+            await axios.post(`http://${config.baseUrl}/api/articles`, {
                 "article": {
                     "userId": "mathalro",
                     "createdAt": Math.floor(Date.now() / 1000),
