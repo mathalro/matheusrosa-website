@@ -1,0 +1,12 @@
+.app-login-form {
+    width: 50%;
+    margin: 40vh auto;
+}
+
+.app-login-form-item {
+    margin-top: 20px;
+}
+
+.app-login-form-title {
+    text-align: center;
+}
