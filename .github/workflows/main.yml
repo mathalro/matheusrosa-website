@@ -99,8 +99,8 @@ jobs:
           SSH_AUTH_SOCK: /tmp/ssh_agent.sock
 
         run: |
-          scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{ vars.AWS_HOST_USER }}@${{ vars.WEBSITE_DOMAIN }}:
-          ssh -o StrictHostKeyChecking=no ${{ vars.AWS_HOST_USER }}@${{ vars.WEBSITE_DOMAIN }} << EOF
+          scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{ vars.AWS_HOST_USER }}@${{ secrets.AWS_EC2_IP_ADDRESS }}:
+          ssh -o StrictHostKeyChecking=no ${{ vars.AWS_HOST_USER }}@${{ secrets.AWS_EC2_IP_ADDRESS }} << EOF
               docker login ghcr.io -u ${{ secrets.NAMESPACE }} -p ${{ secrets.PERSONAL_ACCESS_TOKEN }}
               docker pull $WEBSITE_IMAGE
               docker pull $API_IMAGE
