@@ -1,6 +1,6 @@
 import { Body, Get, Post, Route } from "tsoa";
-import { CreateArticleRequest, CreateArticleResponse, DescribeArticlesRequest, DescribeArticlesResponse } from "../models/article";
-import crypto from "crypto";
+import { CreateArticleRequest, DescribeArticlesResponse } from "../models/article";
+
 import axios from "axios";
 
 const APP_URL = "https://jq46gnahr6.execute-api.eu-west-1.amazonaws.com/prod/articles";

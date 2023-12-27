@@ -1,5 +1,6 @@
 import React from "react";
 import "./TitleContent.css";
+
 import Button from 'react-bootstrap/Button';
 
 const TitleContent = ({ name, menuAction }) => {
