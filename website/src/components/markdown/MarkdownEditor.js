@@ -38,7 +38,7 @@ const MarkdownEditor = () => {
         }
 
         try {
-            await axios.post(`http://${config.baseUrl}/api/articles`, {
+            await axios.post(`https://${config.baseUrl}/api/articles`, {
                 "article": {
                     "userId": "mathalro",
                     "createdAt": Math.floor(Date.now() / 1000),
