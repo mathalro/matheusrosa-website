@@ -20,9 +20,6 @@ services:
     build:
       context: ./proxy
       dockerfile: Dockerfile
-    volumes:
-      - ./proxy:/usr/src/app
-      - /usr/src/app/build
     networks:
       - node-network
     ports:

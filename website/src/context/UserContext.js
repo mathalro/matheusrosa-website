@@ -15,17 +15,21 @@ const credentialsOptions = {
 export const AuthContextProvider = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false);
 
-    useEffect(async () => {
-        try {
-            const loginResponse = await axios.get(`${settings.baseUrl}/api/auth/verify`, credentialsOptions);
-            
-            console.log(loginResponse.data);
-            if (loginResponse.data === true) {
-                setAuthenticated(true);
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                const loginResponse = await axios.get(`${settings.baseUrl}/api/auth/verify`, credentialsOptions);
+                
+                console.log(loginResponse.data);
+                if (loginResponse.data === true) {
+                    setAuthenticated(true);
+                }
+            } catch {
+                setAuthenticated(false);
             }
-        } catch {
-            setAuthenticated(false);
+
         }
+        fetchData();
     }, []);
 
     const googleLogin = async (googleResponse) => {
