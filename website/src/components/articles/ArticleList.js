@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import axios from "axios";
 import Article from "./Article";
-import config from "../../config";
+import settings from "../../settings";
 
-const MarkdownEditor = () => {
-    const [articles, setArticles] = useState();
+const ArticleList = () => {
+    const [articles, setArticles] = useState();    
 
     useEffect(() => {
         const getData = async () => {
-            const response = await axios.get(`https://${config.baseUrl}/api/articles`);
+            const response = await axios.get(`${settings.baseUrl}/api/articles`);
             setArticles(response.data.articles);
         };
 
@@ -26,4 +26,4 @@ const MarkdownEditor = () => {
     );
 };
 
-export default MarkdownEditor;
+export default ArticleList;

@@ -9,9 +9,9 @@ import './index.css';
 
 ReactDOM.render(
   <GoogleOAuthProvider clientId="880835565817-8u67og63ln6q7pqtds4au3hfvij7jioc.apps.googleusercontent.com">
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
   </GoogleOAuthProvider>,
   document.getElementById('root')
 );

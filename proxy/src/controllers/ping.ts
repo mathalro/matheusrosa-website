@@ -3,7 +3,8 @@ import { PingResponse } from "../models/ping"
 
 @Route("ping")
 export default class PingController {
-    @Get("/")
+
+    @Get()
     public async getMessage(): Promise<PingResponse> {
         return {
             message: "pong"

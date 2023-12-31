@@ -7,7 +7,12 @@ import axios from "axios";
 import Button from 'react-bootstrap/Button';
 
 import "./MarkdownEditor.css";
-import config from '../../config';
+import settings from '../../settings';
+import UseAuth from '../../context/UserContext';
+
+const credentialsOptions = {
+    withCredentials: true
+};
 
 const MarkdownEditor = () => {
     const initialTitle = "Article Title...";
@@ -18,6 +23,7 @@ const MarkdownEditor = () => {
     const [showPreview, setShowPreview] = useState(true);
 
     const navigate = useNavigate();
+    const { authenticated } = UseAuth();
 
     const editText = (e) => {
         setText(e.target.value);
@@ -32,13 +38,18 @@ const MarkdownEditor = () => {
     }
 
     const publishArticle = async () => {
+        if (!authenticated) {
+            alert("Create an account to publish your article.");
+            return;
+        }
+        
         if (title === "" || text === "") {
             alert("Article title or article text is empty.");
             return;
         }
 
         try {
-            await axios.post(`https://${config.baseUrl}/api/articles`, {
+            await axios.post(`${settings.baseUrl}/api/articles`, {
                 "article": {
                     "userId": "mathalro",
                     "createdAt": Math.floor(Date.now() / 1000),
@@ -46,7 +57,7 @@ const MarkdownEditor = () => {
                     "title": title,
                     "body": text
                 }
-            });
+            }, credentialsOptions);
 
             navigate("/");
         } catch (e) {

@@ -2,15 +2,16 @@ import { Body, Get, Post, Route } from "tsoa";
 import { CreateArticleRequest, DescribeArticlesResponse } from "../models/article";
 
 import axios from "axios";
+import settings from "../settings";
 
-const APP_URL = "https://jq46gnahr6.execute-api.eu-west-1.amazonaws.com/prod/articles";
+const apiUrl = `${settings.APP_BASE_URL}/articles`;
 
 @Route("articles")
 export default class ArticlesController {
 
     @Get()
     public async getArticles(): Promise<DescribeArticlesResponse> {
-        const response = await axios.get(APP_URL);
+        const response = await axios.get(apiUrl);
         return {
             articles: response.data
         };
@@ -18,6 +19,6 @@ export default class ArticlesController {
 
     @Post()
     public async createArticle(@Body() request: CreateArticleRequest): Promise<void> {
-        const response = await axios.post(APP_URL, request.article);
+        await axios.post(apiUrl, request.article);
     }
 }

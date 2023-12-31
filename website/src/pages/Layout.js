@@ -2,10 +2,10 @@ import Navbar from "../components/nav/Navbar";
 import {Outlet} from "react-router-dom";
 import "./Layout.css";
 
-const Layout = ({ userSession, googleLogout }) => {
+const Layout = () => {
     return (
         <>
-            <Navbar userSession={userSession} googleLogout={googleLogout} />
+            <Navbar />
             <div className="app-layout">
                 <Outlet />
             </div>

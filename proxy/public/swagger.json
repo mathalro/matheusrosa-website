@@ -62,6 +62,34 @@
 				"type": "object",
 				"additionalProperties": false
 			},
+			"AuthGoogleResponse": {
+				"properties": {
+					"message": {
+						"type": "string"
+					},
+					"signedIn": {
+						"type": "boolean"
+					}
+				},
+				"required": [
+					"message",
+					"signedIn"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
+			"AuthGoogleRequest": {
+				"properties": {
+					"token": {
+						"type": "string"
+					}
+				},
+				"required": [
+					"token"
+				],
+				"type": "object",
+				"additionalProperties": false
+			},
 			"PingResponse": {
 				"properties": {
 					"message": {
@@ -120,6 +148,35 @@
 						"application/json": {
 							"schema": {
 								"$ref": "#/components/schemas/CreateArticleRequest"
+							}
+						}
+					}
+				}
+			}
+		},
+		"/auth/google": {
+			"post": {
+				"operationId": "Login",
+				"responses": {
+					"200": {
+						"description": "Ok",
+						"content": {
+							"application/json": {
+								"schema": {
+									"$ref": "#/components/schemas/AuthGoogleResponse"
+								}
+							}
+						}
+					}
+				},
+				"security": [],
+				"parameters": [],
+				"requestBody": {
+					"required": true,
+					"content": {
+						"application/json": {
+							"schema": {
+								"$ref": "#/components/schemas/AuthGoogleRequest"
 							}
 						}
 					}
