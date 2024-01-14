@@ -2,7 +2,7 @@ version: "3"
 services:
   website:
     container_name: website
-    image: '${WEBSITE_IMAGE}'
+    image: 'ghcr.io/mathalro/matheusrosa-website/website:latest'
     hostname: website
     working_dir: /usr/src/app
     networks:
@@ -14,7 +14,7 @@ services:
 
   api:
     container_name: api
-    image: '${API_IMAGE}'
+    image: 'ghcr.io/mathalro/matheusrosa-website/api:latest'
     hostname: api
     networks:
       - node-network
@@ -24,7 +24,7 @@ services:
 
   nginx:
     container_name: nginx
-    image: '${NGINX_IMAGE}'
+    image: 'ghcr.io/mathalro/matheusrosa-website/nginx:latest'
     restart: always
     tty: true
     ports:
