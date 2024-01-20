@@ -72,38 +72,17 @@ jobs:
     name: Deploy to AWS EC2
     runs-on: ubuntu-latest
     needs: checking-secrets
-    if: needs.checking-secrets.outputs.secret_key_exists == 'true'
     steps:
       - name: Checkout main
         uses: actions/checkout@v3
 
-      - name: Add environment variables to .env
-        run: |
-          echo WEBSITE_IMAGE=${{ env.WEBSITE_IMAGE }} >> .env
-          echo NGINX_IMAGE=${{ env.NGINX_IMAGE }} >> .env
-          echo API_IMAGE=${{ env.API_IMAGE }} >> .env
-          echo NAMESPACE=${{ secrets.NAMESPACE }} >> .env
-          echo PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }} >> .env
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v2
+        with:
+          role-to-assume: ${{ vars.AWS_GITHUB_ACTIONS_ROLE }}
+          aws-region: ${{ vars.AWS_TARGET_REGION }}
+          role-session-name: "GitHubActions-DeployWebserver"
 
-      - name: Add the private SSH key to the ssh-agent
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
+      - name: Refresn ASG Instances
         run: |
-          mkdir -p ~/.ssh
-          ssh-agent -a $SSH_AUTH_SOCK > /dev/null
-          ssh-keyscan github.com >> ~/.ssh/known_hosts
-          ssh-add - <<< "${{ secrets.PRIVATE_KEY }}"
-
-      - name: Deploy images on AWS EC2
-        env:
-          SSH_AUTH_SOCK: /tmp/ssh_agent.sock
-
-        run: |
-          scp -o StrictHostKeyChecking=no -r ./.env ./docker-compose.prod.yml ${{ vars.AWS_HOST_USER }}@${{ secrets.AWS_EC2_IP_ADDRESS }}:
-          ssh -o StrictHostKeyChecking=no ${{ vars.AWS_HOST_USER }}@${{ secrets.AWS_EC2_IP_ADDRESS }} << EOF
-              docker login ghcr.io -u ${{ secrets.NAMESPACE }} -p ${{ secrets.PERSONAL_ACCESS_TOKEN }}
-              docker pull $WEBSITE_IMAGE
-              docker pull $API_IMAGE
-              docker pull $NGINX_IMAGE
-              docker-compose --env-file=.env -f docker-compose.prod.yml up -d
-          EOF
+          aws autoscaling start-instance-refresh --auto-scaling-group-name WebserverStack-autoscalinggroupASGA966C106-BUpPL4DaLuva
