@@ -1,3 +1,62 @@
+.app-layout {
+    max-width: 100%;
+}
+
+a {
+    text-decoration: none;
+}
+
+.line {
+    width: 100%;
+    height: 1px;
+    background-color: black;
+    box-shadow: 0 0 1px 0 #111;
+}
+
 .app-about-content {
-    margin-top: 20px;
+    margin-top: 50px;
+}
+
+.content-group {
+    display: flex;
+    justify-content: space-between;
+    max-width: 1200px;
+    margin: 50px auto 0 auto;
+    padding: 0 5px;
+}
+
+.rosa {
+    color: pink;
+}
+
+.avatar {
+    max-width: 40%;
+    height: auto;
+}
+
+.work-logo {
+    max-width: 40%;
+    height: auto;
+    border-left: 1px solid #111;
+}
+
+.small-font {
+    font-size: 12px;
+}
+
+@media (max-width: 900px) {
+    .avatar {
+        margin: 0 0 0 auto;
+    }
+
+    .work-logo {
+        max-width: 60%;
+        border-left: none;
+        margin-bottom: 20px;
+    }
+
+    .content-group {
+        flex-direction: column;
+        padding: 0;
+    }
 }
