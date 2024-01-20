@@ -1,5 +1,5 @@
 .app-navbar {
-  background-color: #333;
+  background-color: #111;
   color: #fff;
   padding: 10px 0;
 }
@@ -15,7 +15,6 @@
 .app-navbar-brand {
   text-decoration: none;
   color: #fff;
-  font-weight: bold;
   font-size: 24px;
 }
 
@@ -31,16 +30,17 @@ ul {
 }
 
 .app-navbar-item {
-  margin: 0 5px;
+  margin: 0 10px;
 }
 
 .app-navbar-item a {
   text-decoration: none;
+  font-weight: 10;
   color: #fff;
 }
 
 .app-navbar-item a:hover {
-  text-decoration: underline;
+  color: #757575;
 }
 
 .app-logo {

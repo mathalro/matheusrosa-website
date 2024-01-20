@@ -1,12 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
 import './Navbar.css';
 import logo from '../../logo.png';
-import { useNavigate } from 'react-router-dom';
 import UseAuth from '../../context/UserContext';
 
 const Navbar = () => {
   const { authenticated } = UseAuth();
-  const navigate = useNavigate();
 
   const logout = () => {
     document.cookie = "user_token" +'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
@@ -21,17 +19,17 @@ const Navbar = () => {
         </a>
         <ul className="app-navbar-menu">
           <li className="app-navbar-item">
-            <a href="/" >Home</a>
+            <a href="/" >home</a>
           </li>
           <li className="app-navbar-item">
-            <a href="/write" >Write</a>
+            <a href="/about">about</a>
           </li>
           <li className="app-navbar-item">
-            <a href="/about">About</a>
+            <a href="/write" >write</a>
           </li>
           <li className="app-navbar-item">
-            {authenticated ? <a href="#" onClick={logout}>Logout</a> : 
-              <a href="/login">Login</a>}
+            {authenticated ? <a href="#" onClick={logout}>logout</a> : 
+              <a href="/login">login</a>}
           </li>
         </ul>
       </div>
