@@ -1,5 +1,9 @@
 name: Continuous Integration and Delivery
 
+permissions:
+  id-token: write
+  contents: read
+
 on:
   push:
     branches: [main]
