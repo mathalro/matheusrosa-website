@@ -8,7 +8,9 @@ const Footer = () => {
 
     return (
         <div className="footer">
-            <p><i>Copyright &copy; {getYear()}</i> Matheus Rosa Consulting. All rights reserved.</p>
+            <p>
+                <i>Copyright &copy; {getYear()}</i> Matheus Rosa Consulting. All rights reserved.
+            </p>
         </div>
     )
 }

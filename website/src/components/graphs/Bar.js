@@ -29,6 +29,7 @@ const SKillsChart = () => {
     },
     
     containerProps = {
+        maxWidth: '100%',
         width: '100%'
     };
 
