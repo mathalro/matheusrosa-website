@@ -1,16 +1,13 @@
-.app-layout {
-    max-width: 100%;
-}
-
 a {
     text-decoration: none;
 }
 
 .line {
-    width: 100%;
     height: 1px;
     background-color: black;
     box-shadow: 0 0 1px 0 #111;
+    width: calc(100vw - 20px);
+    margin-left: calc(-50vw + 50% + 10px);
 }
 
 .app-about-content {
@@ -23,6 +20,7 @@ a {
     max-width: 1200px;
     margin: 50px auto 0 auto;
     padding: 0 5px;
+    align-items: start;
 }
 
 .rosa {
@@ -35,28 +33,58 @@ a {
 }
 
 .work-logo {
-    max-width: 40%;
+    width: 35%;
     height: auto;
-    border-left: 1px solid #111;
+}
+
+.work-logo-img {
+    max-width: 100%;
+}
+
+.work-experience {
+    width: 50%;
+    max-width: 50%;
+}
+
+.work-experience h1 {
+    text-align: right;
+}
+
+.skills {
+    width: 100%;
 }
 
 .small-font {
     font-size: 12px;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
     .avatar {
         margin: 0 0 0 auto;
-    }
-
-    .work-logo {
-        max-width: 60%;
-        border-left: none;
-        margin-bottom: 20px;
     }
 
     .content-group {
         flex-direction: column;
         padding: 0;
+    }
+
+    .work-experience {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .work-experience h1 {
+        margin: 20px 0;
+        font-weight: bold;
+    }
+
+    .line {
+        width: 100%;
+    }
+
+    .work-logo {
+        width: 40%;
+        border-left: none;
+        margin-bottom: 20px;
     }
 }
