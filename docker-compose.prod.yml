@@ -20,9 +20,9 @@ services:
       - node-network
     ports:
       - "8000:8000"
-    command: npm run dev
+    command: npm run start
     volumes:
-      - ~/appdata/logs/:/var/log/application/
+      - /home/ec2-user/appdata/logs/:/var/log/application/
 
   nginx:
     container_name: nginx
