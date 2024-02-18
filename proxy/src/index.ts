@@ -5,6 +5,7 @@ import swaggerUi from "swagger-ui-express";
 import cors from 'cors';
 import cookieParser from "cookie-parser";
 import logger from './log4js';
+import requestLogger from './middlewares/logger-middleware';
 
 logger.info("Configuring application.");
 
@@ -17,6 +18,8 @@ app.use(express.static("public"));
 app.use(express.urlencoded({ extended: true }));
 
 const allowedOrigins = ['http://localhost:8000', 'http://localhost:8080', 'http://localhost:3000', 'http://matheusrosa.com', 'https://matheusrosa.com', 'https://www.matheusrosa.com', 'http://www.matheusrosa.com'];
+logger.info(`Configuring cors for the allowed origins '${allowedOrigins}'`);
+
 const options: cors.CorsOptions = {
     origin: allowedOrigins,
     credentials: true
@@ -31,6 +34,8 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use(requestLogger);
+
 app.use("/api", Router);
 app.use("/", Router);
 app.use(
@@ -42,6 +47,8 @@ app.use(
         }
     })
 );
+
+logger.info(`App will be running in port '${PORT}'`)
 
 app.listen(PORT, () => {
     console.log(`App running on port ${PORT}.`);
