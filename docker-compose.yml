@@ -25,6 +25,8 @@ services:
     ports:
       - "8000:8000"
     command: npm run dev
+    volumes:
+      - ~/appdata/logs/:/var/log/application/
 
   nginx:
     container_name: nginx
